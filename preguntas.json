@@ -1,0 +1,336 @@
+[
+    {
+      "modalitat": "paises",
+      "pregunta": "¿Cuál es la capital de Estados Unidos?",
+      "respostes": {
+        "a": "Washington, D.C.",
+        "b": "Nueva York",
+        "c": "Los Ángeles",
+        "d": "Chicago"
+      },
+      "correcta": "Washington, D.C."
+    },
+    {
+      "modalitat": "paises",
+      "pregunta": "¿Cuál es la capital de Canadá?",
+      "respostes": {
+        "a": "Toronto",
+        "b": "Montreal",
+        "c": "Vancouver",
+        "d": "Ottawa"
+      },
+      "correcta": "Ottawa"
+    },
+    {
+      "modalitat": "paises",
+      "pregunta": "¿Cuál es la capital de México?",
+      "respostes": {
+        "a": "Ciudad de México",
+        "b": "Monterrey",
+        "c": "Guadalajara",
+        "d": "Cancún"
+      },
+      "correcta": "Ciudad de México"
+    },
+    {
+      "modalitat": "paises",
+      "pregunta": "¿Cuál es la capital de Brasil?",
+      "respostes": {
+        "a": "Recife",
+        "b": "Brasilia",
+        "c": "Río de Janeiro",
+        "d": "Salvador"
+      },
+      "correcta": "Brasilia"
+    },
+    {
+      "modalitat": "paises",
+      "pregunta": "¿Cuál es la capital de Argentina?",
+      "respostes": {
+        "a": "Rosario",
+        "b": "Buenos Aires",
+        "c": "Cordoba",
+        "d": "Montevideo"
+      },
+      "correcta": "Buenos Aires"
+    },
+    {
+      "modalitat": "paises",
+      "pregunta": "¿Cuál es la capital de Reino Unido?",
+      "respostes": {
+        "a": "Manchester",
+        "b": "Londres",
+        "c": "Oxford",
+        "d": "Leeds"
+      },
+      "correcta": "Londres"
+    },
+    {
+      "modalitat": "paises",
+      "pregunta": "¿Cuál es la capital de Francia?",
+      "respostes": {
+        "a": "Paris",
+        "b": "Marsella",
+        "c": "Lyon",
+        "d": "Montpellier"
+      },
+      "correcta": "Paris"
+    },
+    {
+      "modalitat": "paises",
+      "pregunta": "¿Cuál es la capital de Alemania?",
+      "respostes": {
+        "a": "Ámsterdam",
+        "b": "Múnich",
+        "c": "Berlín",
+        "d": "Hamburgo"
+      },
+      "correcta": "Berlín"
+    },
+    {
+      "modalitat": "paises",
+      "pregunta": "¿Cuál es la capital de Italia?",
+      "respostes": {
+        "a": "Barcelona",
+        "b": "Nápoles",
+        "c": "Roma",
+        "d": "Milán"
+      },
+      "correcta": "Roma"
+    },
+    {
+      "modalitat": "paises",
+      "pregunta": "¿Cuál es la capital de España?",
+      "respostes": {
+        "a": "Madrid",
+        "b": "Salou",
+        "c": "Sevilla",
+        "d": "Murcia"
+      },
+      "correcta": "Madrid"
+    },
+    
+    {
+      "modalitat": "quimica",
+        "pregunta": "¿Cuál es el símbolo químico del oxígeno?",
+        "respostes": {
+          "a": "O",
+          "b": "Ox",
+          "c": "Oxí",
+          "d": "O2"
+        },
+        "correcta": "O"},
+      {
+        "modalitat": "quimica",
+        "pregunta": "¿Cuántos elementos químicos hay en la tabla periódica?",
+        "respostes": {
+          "a": "92",
+          "b": "108",
+          "c": "140",
+          "d": "118"
+        },
+        "correcta": "118"
+      },
+      {
+        "modalitat": "quimica",
+        "pregunta": "¿Cuál es el gas más abundante en la atmósfera terrestre?",
+        "respostes": {
+          "a": "Nitrógeno",
+          "b": "Oxígeno",
+          "c": "Argón",
+          "d": "Dióxido de carbono"
+        },
+        "correcta": "Nitrógeno"
+      },
+      {
+        "modalitat": "quimica",
+        "pregunta": "En quin any es va produir la Revolució Francesa?",
+        "respostes": {
+          "a": "1850",
+          "b": "1804",
+          "c": "1832",
+          "d": "1789"
+        },
+        "correcta": "1789"
+      },
+      {
+        "modalitat": "quimica",
+        "pregunta": "¿Qué número atómico tiene el carbono?",
+        "respostes": {
+          "a": "8",
+          "b": "4",
+          "c": "6",
+          "d": "12"
+        },
+        "correcta": "6"
+      },
+      {
+        "modalitat": "quimica",
+        "pregunta": "¿Cuál es el proceso químico de conversión de un sólido directamente a gas sin pasar por el estado líquido?",
+        "respostes": {
+          "a": "Sublimación",
+          "b": "Fusión",
+          "c": "Vaporización",
+          "d": "Solidificación"
+        },
+        "correcta": "Solidificación"
+      },
+      {
+        "modalitat": "quimica",
+        "pregunta": "¿Qué tipo de enlace químico comparten electrones entre átomos?",
+        "respostes": {
+          "a": "Iónico",
+          "b": "Van der Waals",
+          "c": "Metálico",
+          "d": "Covalente"
+        },
+        "correcta": "Covalente"
+      },
+      {
+        "modalitat": "quimica",
+        "pregunta": "¿Cuál es el componente principal del ácido clorhídrico?",
+        "respostes": {
+          "a": "Hidroxilo",
+          "b": "Cloro",
+          "c": "Hidroxilo",
+          "d": "Hidrógeno"
+        },
+        "correcta": "Hidrógeno"
+      },
+      {
+        "modalitat": "quimica",
+        "pregunta": "¿Cuál es la fórmula quimica del agua?",
+        "respostes": {
+          "a": "H2O2",
+          "b": "CO2",
+          "c": "CH4",
+          "d": "H2O"
+        },
+        "correcta": "H2O"
+      },
+      {
+        "modalitat": "quimica",
+        "pregunta": "¿Cuál es el metal más ligero?",
+        "respostes": {
+          "a": "Aluminio",
+          "b": "Sodio",
+          "c": "Litio",
+          "d": "Magnesio"
+        },
+        "correcta": "Litio"
+      },
+      
+        {
+          "modalitat": "astronomia",
+          "pregunta": "¿Cuál es la estrella más cercana a la Tierra?",
+          "respostes": {
+            "a": "Alfa Centauri",
+            "b": "Sirio",
+            "c": "Proxima Centauri",
+            "d": "Betelgeuse"
+          },
+          "correcta": "Proxima Centauri"
+        },
+        {
+          "modalitat": "astronomia",
+          "pregunta": "¿Cuál es la galaxia que contiene nuestro sistema solar?",
+          "respostes": {
+            "a": "Triángulo",
+            "b": "Andrómeda",
+            "c": "Sombrero",
+            "d": "Vía Láctea"
+          },
+          "correcta": "Vía Láctea"
+        },
+        {
+          "modalitat": "astronomia",
+          "pregunta": "¿Cuál es la luna más grande de Júpiter?",
+          "respostes": {
+            "a": "Ío",
+            "b": "Calisto",
+            "c": "Europa",
+            "d": "Ganimedes"
+          },
+          "correcta": "Ganimedes"
+        },
+        {
+          "modalitat": "astronomia",
+          "pregunta": "¿Cuál es el nombre del telescopio espacial lanzado por la NASA en 1990?",
+          "respostes": {
+            "a": "Kepler",
+            "b": "Hubble",
+            "c": "Càrpats",
+            "d": "Spitzer"
+          },
+          "correcta": "Hubble"
+        },
+        {
+          "modalitat": "astronomia",
+          "pregunta": "Quin és el nom de l'oceà més gran del món?",
+          "respostes": {
+            "a": "Eclipse solar total",
+            "b": "Eclipse lunar",
+            "c": "Eclipse anular",
+            "d": "Eclipse parcial"
+          },
+          "correcta": "Eclipse solar total"
+        },
+        {
+          "modalitat": "astronomia",
+          "pregunta": "¿Cuál es la distancia promedio entre la Tierra y el Sol?",
+          "respostes": {
+            "a": "93 millones de millas",
+            "b": "500,000 millas",
+            "c": "1 billón de millas",
+            "d": "10 millones de millas"
+          },
+          "correcta": "93 millones de millas"
+        },
+        {
+          "modalitat": "astronomia",
+          "pregunta": "¿Qué es un agujero negro?",
+          "respostes": {
+            "a": "Un agujero en el espacio-tiempo",
+            "b": "Una estrella en explosión",
+            "c": "Un planeta oscuro",
+            "d": "Una supernova"
+          },
+          "correcta": "Oceà Índic"
+        },
+        {
+          "modalitat": "astronomia",
+          "pregunta": "¿Cuál es el planeta más grande de nuestro sistema solar?",
+          "respostes": {
+            "a": "Mercurio",
+            "b": "Venus",
+            "c": "Júpiter",
+            "d": "Saturno"
+          },
+          "correcta": "Júpiter"
+        },
+        {
+          "modalitat": "astronomia",
+          "pregunta": "¿Cuántas lunas tiene Marte?",
+          "respostes": {
+            "a": "2",
+            "b": "1",
+            "c": "4",
+            "d": "3"
+          },
+          "correcta": "2"
+        },
+        {
+          "modalitat": "astronomia",
+          "pregunta": "¿Cuál es el nombre de la primera persona en caminar sobre la Luna?",
+          "respostes": {
+            "a": "Neil Armstrong",
+            "b": "Buzz Aldrin",
+            "c": "Yuri Gagarin",
+            "d": "Alan Shepard"
+          },
+          "correcta": "Neil Armstrong"
+        }
+        ]
+      
+    
+  

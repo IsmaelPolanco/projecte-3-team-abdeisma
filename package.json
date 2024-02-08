@@ -1,0 +1,28 @@
+{
+  "name": "nodejs_proves",
+  "version": "1.0.0",
+  "main": "prova.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon prova.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node": "^21.6.0",
+    "nodemon": "^3.0.2",
+    "socket.io": "^4.7.3",
+    "uuid": "^9.0.1",
+    "websocket.io": "^0.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janPiMargalef/team-08-projecte3.git"
+  },
+  "bugs": {
+    "url": "https://github.com/janPiMargalef/team-08-projecte3/issues"
+  },
+  "homepage": "https://github.com/janPiMargalef/team-08-projecte3#readme",
+  "description": ""
+}

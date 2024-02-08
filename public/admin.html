@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap">
+
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-image: url(img/admin.jpg);
+      }
+
+      #gameForm {
+        border: 2px solid #fff;
+        padding: 40px;
+        width: 400px;
+        border-radius: 20px;
+        background-color: #fff; /* Fondo blanco */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Sombra suave */
+      }
+
+      #gameForm h2 {
+        font-family: "Chakra Petch", sans-serif;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #ff7f00;
+      }
+
+      #gameForm label {
+        display: block;
+        margin-bottom: 10px;
+        color: #333; /* Texto oscuro */
+      }
+
+      #gameForm label input[type="checkbox"] {
+        display: none;
+      }
+
+      #gameForm label input[type="checkbox"] + span {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        margin-right: 10px;
+        border: 2px solid #ffad33; /* Borde naranja */
+        border-radius: 3px;
+        cursor: pointer;
+        vertical-align: middle;
+        transition: background-color 0.3s ease; /* Transición suave */
+      }
+
+      #gameForm label input[type="checkbox"]:checked + span {
+        background-color: #ffad33; /* Fondo naranja cuando está seleccionado */
+      }
+
+      #gameForm select,
+      #gameForm input[type="text"],
+      #gameForm button {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #ffad33; /* Botón y campos de texto naranjas */
+        color: #fff; /* Texto blanco */
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Transición suave */
+      }
+
+      #gameForm button:hover {
+        background-color: #ff7f00; /* Naranja más oscuro al pasar el cursor */
+      }
+
+      #gameForm button:active {
+        transform: scale(0.95); /* Reducción de escala al hacer clic */
+      }
+      #boton-atras {
+        margin-bottom: 40%;
+      }
+      #go-back {
+        background-color: #ffad33;
+        color: white;
+        padding: 15px 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      #go-back:hover {
+        background-color: #ff7f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="boton-atras">
+      <button id="go-back">Volver</button>
+    </div>
+    <div id="gameForm">
+      <h2>Crear Nueva Partida</h2>
+      <form id="createGameForm">
+        <label for="title">Título de la partida:</label>
+        <input type="text" id="title" name="title" required />
+
+        <label for="quantity">Cantidad de preguntas:</label>
+        <select id="quantity" name="quantity">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+        </select>
+
+        <label for="time">Temporizador para las preguntas:</label>
+        <select id="time" name="time">
+          <option value="5">5 segundos</option>
+          <option value="10" selected>10 segundos</option>
+          <option value="15">15 segundos</option>
+          <option value="20">20 segundos</option>
+        </select>
+
+        <label>Temas:</label>
+        <label><input type="checkbox" name="topic" value="paises" /><span></span>Paises</label>
+        <label><input type="checkbox" name="topic" value="quimica" /><span></span>Química</label>
+        <label><input type="checkbox" name="topic" value="astronomia"/><span></span> Astronomia</label><br>
+
+        <div style="text-align: center">
+          <button type="submit">Crear Partida</button>
+        </div>
+      </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+      // JavaScript para manejar el clic en el botón
+      document.getElementById("go-back").addEventListener("click", function () {
+        // Ir a la página anterior
+        window.history.back();
+      });
+    </script>
+  </body>
+</html>

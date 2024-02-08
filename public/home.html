@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap">
+    <title>ORANGE GAME</title>
+    <style>
+        
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('img/background.jpg');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #container {
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+        }
+
+        #title {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 36px;
+            color: #ff7f00;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        #linkInput {
+            width: calc(100% - 100px);
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+            outline: none;
+        }
+
+        #linkInput:focus {
+            box-shadow: 0 0 20px rgba(255, 127, 0, 0.5);
+        }
+
+        #entrarButton {
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #ff7f00;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            outline: none;
+        }
+
+        #entrarButton:hover {
+            background-color: #ffad33;
+        }
+
+        #createSection {
+            margin-top: 30px;
+            font-size: 16px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .orange-link {
+            color: #ff7f00;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .orange-link:hover {
+            color: #ffad33;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <h1 id="title">VAMOS ALLÁ</h1>
+
+        <p>Introduce la URL de la partida:</p>
+        <div style="position: relative;">
+            <input id="linkInput" type="text" placeholder="URL de la partida">
+            <button id="entrarButton">Entrar</button>
+        </div>
+
+        <div id="createSection">
+            <p>¿Quieres crear una partida en <span class="orange-link" onclick="window.location.href='admin.html';">Orange Game</span>?</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

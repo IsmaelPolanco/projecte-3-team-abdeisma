@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap">
+
+    <title>ORANGE GAME</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url(img/game.png);
+      }
+      h1 {
+        font-family: "Chakra Petch", sans-serif;
+        color: #ff7f00;
+      }
+      #question {
+        margin-bottom: 20px;
+      }
+
+      #resposta-a,
+      #resposta-b,
+      #resposta-c,
+      #resposta-d {
+        display: inline-block;
+        margin: 25px 0; /* Ajusta el espacio vertical entre los botones */
+        padding: 19%; /* Ajusta el tamaño de los botones */
+        width: 100%; /* Hace que todos los botones tengan el mismo ancho */
+        box-sizing: border-box; /* Incluye el padding en el ancho del botón */
+        font-size: 18px;
+        color: white;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        font-weight: 600;
+        height: 100px;
+        margin-top: 30px;
+      }
+      #resposta-a {
+        background-color: #ff0000;
+      }
+      #resposta-b {
+        background-color: #0075ff;
+      }
+      #resposta-c {
+        background-color: #d89e00;
+      }
+      #resposta-d {
+        background-color: #2a8f0d;
+      }
+
+      #resposta-a.disabled {
+        background-color: #ff5454;
+        cursor: not-allowed;
+      }
+      #resposta-b.disabled {
+        background-color: #4b9eff;
+        cursor: not-allowed;
+      }
+      #resposta-c.disabled {
+        background-color: #ffcf4b;
+        cursor: not-allowed;
+      }
+      #resposta-d.disabled {
+        background-color: #53963f;
+        cursor: not-allowed;
+      }
+
+      #buttons-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+
+      .column {
+        flex-basis: 45%;
+        text-align: center;
+      }
+
+      #countdown-container,
+      #second-countdown-container {
+        margin-top: -20%;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      #countdown-circle,
+      #second-countdown-circle {
+        width: 100px;
+        height: 100px;
+        background-color: #ff7f00;
+        border-radius: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #countdown,
+      #second-countdown {
+        font-size: 24px;
+        color: white;
+      }
+
+      #container {
+        position: relative;
+        max-width: 1200px;
+        width: 80%;
+        margin: 20px auto;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        padding: 20px;
+        text-align: center;
+        margin-right: 0px;
+        height: 650px;
+        max-height: 1000px;
+        margin-top: 6%;
+        margin-left: 3%;
+      }
+      #user-table-container {
+        width: 300px;
+        margin-top: -20%;
+        margin-left: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #FF7629; /* Cambiado a un color púrpura más oscuro */
+        color: #fff; /* Texto en color blanco */
+      }
+
+      #global {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      #user-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      #user-table th,
+      #user-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        color: #fff; /* Texto en color blanco */
+      }
+
+      #user-table th {
+        background-color: #EC5500; /* Fondo del encabezado más oscuro */
+      }
+
+      #user-table tbody tr:nth-child(even) {
+        background-color: #D14B00; /* Fondo de las filas pares más oscuro */
+      }
+
+      #user-table tbody tr:hover {
+        background-color: #ff6914; /* Fondo al pasar el mouse más oscuro */
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      #next-question {
+        background-color: #ff6914;
+        color: white;
+        padding: 15px 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="global">
+      <div id="container">
+        <h1>ORANGE GAME</h1>
+
+        <div id="question">
+          <p id="pregunta">
+            Pregunta: ¿Cual es la capital de USA?, cuando salga el nombre entero
+            es cuando sale bien
+          </p>
+        </div>
+        <div id="buttons-container">
+          <div class="column">
+            <button
+              id="resposta-a"
+              class="answer-btn"
+              onclick="handleButtonClick('a')"
+            >
+              Montana
+            </button>
+            <button
+              id="resposta-c"
+              class="answer-btn"
+              onclick="handleButtonClick('c')"
+            >
+              Miami
+            </button>
+          </div>
+          <div class="column">
+            <button
+              id="resposta-b"
+              class="answer-btn"
+              onclick="handleButtonClick('b')"
+            >
+              New York
+            </button>
+            <button
+              id="resposta-d"
+              class="answer-btn"
+              onclick="handleButtonClick('d')"
+            >
+              Boston
+            </button>
+          </div>
+        </div>
+        <div id="countdown-container">
+          <div id="countdown-circle">
+            <div id="countdown"></div>
+            <!--¡¡IMPORTANTE!! <-- PENDIENTE DE MODIFICAR! ESTA VARIABLE DEBE TOMAR EL VALOR DESDE SERVER-->
+          </div>
+        </div>
+
+        <div id="right-answer" style="display: none">
+          La resposta correcta era:
+          <div id="right-answer-text">Washigton D.C</div>
+        </div>
+        <div id="addComment-container" style="display: none"></div>
+        <div
+          id="chart-container"
+          style="
+            display: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+          "
+        ></div>
+      </div>
+      <div id="user-table-container">
+        <table id="user-table">
+          <thead>
+            <tr>
+              <th>Puntos</th>
+              <th>Nickname</th>
+              <th id="columna-aciertos">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-check-lg"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"
+                  />
+                </svg>
+              </th>
+              <th id="columna-fallos">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-x-lg"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
+                  />
+                </svg>
+              </th>
+              <th>%</th>
+            </tr>
+          </thead>
+
+          <tbody></tbody>
+        </table>
+      </div>
+      <button id="next-question">Següent pregunta</button>
+
+      <div id="podi" style="display: none">PODIO DE RESULTADOS</div>
+
+      <button id="one-more-time" style="display: none">Torna a jugar</button>
+
+      <div id="second-countdown-container" style="display: none">
+        <div id="second-countdown-circle">
+          <div id="second-countdown"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+      const respuestaCorrecta = "París";
+
+      // Marcador (scoreboard)
+      const scoreboard = {
+        respuestasCorrectas: 0,
+        respuestasIncorrectas: 0,
+      };
+
+      // Array para rastrear los clics en cada botón
+      var clicks = [0, 0, 0, 0];
+
+      function handleButtonClick(opcion) {
+        const clickedButton = document.getElementById(`resposta-${opcion}`);
+        disableAllButtons();
+        clickedButton.disabled = false;
+        updateButtonStyles(clickedButton);
+      }
+
+      function updateButtonStyles(clickedButton) {
+        const buttons = document.querySelectorAll(".answer-btn");
+        buttons.forEach((button) => {
+          if (button === clickedButton) {
+            // Mantener el color principal del botón clicado
+            button.classList.add("clicked");
+          } else {
+            // mantiene el estilo de los botones que no se clickaron
+            button.classList.add("disabled");
+          }
+        });
+      }
+
+      // Funció que canvia la visibilitat d'un element, els paràmetres són l'element i un boleà, amb true mostrem l'element i amb false l'amaguem
+      function toggleElementVisibility(element, show) {
+        if (show) {
+          element.style.display = "block";
+        } else {
+          element.style.display = "none";
+        }
+      }
+
+      function toggleButtonsVisibility(element, show) {
+        if (show) {
+          element.style.display = "flex";
+        } else {
+          element.style.display = "none";
+        }
+      }
+
+      // Funció que canvia el blur d'un element, els paràmetres són l'element i un boleà, amb true mostrem l'element amb el blur i amb false el mostrem sense blur
+      function toggleElementBlurless(element, show) {
+        if (show) {
+          element.style.filter = "blur(10px)";
+        } else {
+          element.style.filter = "none";
+        }
+      }
+
+      // Funció que executa totes les modificacions d'estils dels elements HTML durant el compte enrere de cada pregunta
+      function showAndHideDuringFirstCountDown() {
+        toggleButtonsVisibility(
+          document.getElementById("buttons-container"),
+          true
+        );
+        toggleElementVisibility(
+          document.getElementById("countdown-container"),
+          true
+        ); // Ocultar botones al llegar a cero
+      }
+
+      // Funció que executa totes les modificacions d'estils dels elements HTML en acabar el temps per respondre una pregunta
+      function showAndHideAfterFirstCountDown() {
+        toggleButtonsVisibility(
+          document.getElementById("buttons-container"),
+          false
+        ); // Ocultar botones al llegar a cero
+        //toggleElementVisibility(document.getElementById('new-container'), true); // Mostrar el nuevo contenedor
+        toggleElementVisibility(document.getElementById("right-answer"), true); // Mostrar el nuevo contenedor
+        toggleElementVisibility(
+          document.getElementById("addComment-container"),
+          true
+        ); // Mostrar el nuevo contenedor
+        toggleElementVisibility(
+          document.getElementById("chart-container"),
+          true
+        ); // Mostrar el nuevo contenedor
+        toggleElementVisibility(
+          document.getElementById("countdown-container"),
+          false
+        ); // Mostrar el nuevo contenedor
+      }
+
+      // Funció que executa totes les modificacions d'estils dels elements HTML en acabar el temps d'espera per la següent pregunta
+      function showAndHideAfterSecondCountDown() {
+        toggleElementVisibility(document.getElementById("right-answer"), false); // Mostrar el nuevo contenedor
+        toggleElementVisibility(
+          document.getElementById("addComment-container"),
+          false
+        ); // Mostrar el nuevo contenedor
+        toggleElementVisibility(
+          document.getElementById("chart-container"),
+          false
+        ); // Mostrar el nuevo contenedor
+        toggleElementVisibility(
+          document.getElementById("second-countdown-container"),
+          false
+        ); // Mostrar el nuevo contenedor
+      }
+
+      // Funció que executa totes les modificacions d'estils dels elements HTML en acabar la partida
+      function showAndHideAtTheEnd() {
+        toggleElementVisibility(document.getElementById("podi"), true);
+        toggleElementVisibility(document.getElementById("one-more-time"), true);
+        //toggleElementVisibility(document.getElementById('new-container'), false); // Mostrar el nuevo contenedor
+        toggleElementVisibility(document.getElementById("right-answer"), false); // Mostrar el nuevo contenedor
+        toggleElementVisibility(
+          document.getElementById("addComment-container"),
+          false
+        ); // Mostrar el nuevo contenedor
+        toggleElementVisibility(
+          document.getElementById("chart-container"),
+          false
+        ); // Mostrar el nuevo contenedor
+        toggleElementVisibility(
+          document.getElementById("second-countdown-container"),
+          false
+        ); // Mostrar el nuevo contenedor
+        toggleElementVisibility(
+          document.getElementById("next-question"),
+          false
+        ); // Mostrar el nuevo contenedor
+        toggleElementVisibility(document.getElementById("question"), false); // Mostrar el nuevo contenedor
+      }
+
+      // Funció que comença el compte enrere del temps per respondre cada pregunta
+      function startCountdown(initialTime) {
+        // Variable local que emmagatzema la quantitat de temps del compte enrere, s'inicialitza amb el temps inicial (questionTime)
+        let remainingTime = initialTime;
+
+        // Funció que actualitza el compte enrere i modifica la visibilitat dels elements HTML segons el comptador
+        function updateCountdown() {
+          document.getElementById("countdown").innerText = remainingTime;
+
+          if (remainingTime === 0) {
+            updateChart();
+            // Amaguem i mostrem els elements HTML adients quan el compte enrere s'ha acabat
+            showAndHideAfterFirstCountDown();
+            // Modificació estils dels botons de les respostes
+            enableAllButtons();
+            removeClickedStyles();
+            // AQUÍ HAY QUE EVALUAR CUÁNTAS PREGUNTAS QUEDAN Y EJECUTAR UNA FUNCIÓN U OTRA SEGÚN SI QUEDAN O NO PREGUNTAS
+
+            getReadyCountDown(waitTime);
+          } else if (remainingTime > 0) {
+            // Amaguem i mostrem els elements HTML adients durant el compte enrere
+            showAndHideDuringFirstCountDown();
+          }
+
+          if (remainingTime < 0) {
+          } else {
+            // Reduïm els segons del compte enrere
+            remainingTime--;
+            setTimeout(updateCountdown, 1000); // Actualitzar cada segon
+          }
+        }
+        // Executem updateCountdown() per modificar el compte enrere i assegurar-se que els elements es mostren i s'amaguen adienment
+        updateCountdown();
+      }
+      // Funció que comença el compte enrere del temps d'espera entre pregunta i pregunta
+      function startSecondCountdown(getReadyTime) {
+        let remainingTime = getReadyTime;
+
+        // Funció que actualitza el compte enrere i modifica la visibilitat dels elements HTML segons el comptador
+        function updateCountdown() {
+          document.getElementById("second-countdown").innerText = remainingTime;
+
+          if (remainingTime === 0) {
+            numPregRestants--;
+            console.log("Número de preguntes restants" + " " + numPregRestants);
+
+            if (numPregRestants != 0) {
+              // Amaguem i mostrem els elements HTML adients quan el temps d'espera s'ha acabat
+              showAndHideAfterSecondCountDown();
+
+              // AQUÍ HAY QUE EVALUAR CUÁNTAS PREGUNTAS QUEDAN Y EJECUTAR UNA FUNCIÓN U OTRA SEGÚN SI QUEDAN O NO PREGUNTAS
+
+              // Cridem la funció de startCountdown amb questionTime per paràmetre per començar el cicle de la següent pregunta
+              startCountdown(questionTime);
+            } else {
+              // Muestra el podio y esconde el resto de elementos
+              showAndHideAtTheEnd();
+            }
+          }
+
+          if (remainingTime < 0) {
+          } else {
+            // Reduïm els segons del compte enrere
+            remainingTime--;
+            setTimeout(updateCountdown, 1000); // Actualitzar cada segon
+          }
+        }
+
+        updateCountdown();
+      }
+
+      //VARIABLES GLOBALS //
+      // Constant que emmagatzema el temps d'espera entre una pregunta i una altra
+      const waitTime = 5;
+
+      // Constant que emmagatzema el temps per respondre cada pregunta
+      const questionTime = 5;
+
+      // Constant que emmagatzema la quantitat de preguntes totals que té la partida
+      const numPregTotals = 10;
+
+      // Variable que emmagatzema el número de preguntes de la partida que resten per mostrar
+      var numPregRestants = 10;
+
+      function calcularNumPregRestants(numPregTotals, numPregRestants) {
+        if (numPregTotals >= numPregRestants) {
+          numPreguntesRestants--;
+          return true;
+        } else if (numPregRestants === 0) {
+          //Acaba el joc i mostra el podi
+          return false;
+        }
+      }
+
+      // Funció que mostra el comptador de temps d'espera entre pregunta i pregunta, executa i guarda en la constant la funció startSecondCountdown amb paràmetre del temps d'espera
+      function getReadyCountDown(waitTime) {
+        toggleElementVisibility(
+          document.getElementById("second-countdown-container"),
+          true
+        );
+        const secondCountdown = startSecondCountdown(waitTime);
+      }
+
+      // Iniciar el CD amb el temps questionTime per paràmetre
+      startCountdown(questionTime);
+
+      // Función que habilita todos los botones
+      function enableAllButtons() {
+        const buttons = document.querySelectorAll(".answer-btn");
+        buttons.forEach((button) => {
+          button.disabled = false;
+        });
+      }
+
+      // Función que deshabilita los botones
+      function disableAllButtons() {
+        const buttons = document.querySelectorAll(".answer-btn");
+        buttons.forEach((button) => {
+          button.disabled = true;
+        });
+      }
+
+      // Función para quitar estilos de clicado
+      function removeClickedStyles() {
+        const buttons = document.querySelectorAll(".answer-btn");
+        buttons.forEach((button) => {
+          button.classList.remove("clicked");
+          button.classList.remove("disabled");
+          button.style.backgroundColor = ""; // Restablece el color de fondo
+          button.style.color = ""; // Restablece el color del texto
+          button.style.cursor = ""; // Restablece el cursor
+        });
+      }
+
+      // Variables que obtienen las referencias de los elementos del DOM
+      var textoPrincipal = document.getElementById("texto-principal");
+
+      // Agrega el evento de ratón para mostrar/ocultar el texto adicional
+      textoPrincipal.addEventListener("mouseover", function () {
+        // Muestra el comentari
+        comentari.style.display = "block";
+      });
+
+      textoPrincipal.addEventListener("mouseout", function () {
+        // Oculta el comentari
+        comentari.style.display = "none";
+      });
+
+      textoPrincipal.addEventListener("mousemove", function (event) {
+        // Posiciona el comentari cerca del puntero del ratón
+        comentari.style.left = event.pageX + 10 + "px";
+        comentari.style.top = event.pageY + 10 + "px";
+      });
+
+      // Variable global para almacenar la instancia del gráfico actual
+      let myChart;
+
+      // Función que actualiza los gráficos en función de las respuestas escogidas
+      function updateChart() {
+        // Destruir el gráfico anterior si existe
+        if (myChart) {
+          myChart.destroy();
+        }
+
+        var ctx = document.getElementById("myChart").getContext("2d");
+        myChart = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: [
+              document.getElementById("resposta-a").textContent,
+              document.getElementById("resposta-c").textContent,
+              document.getElementById("resposta-b").textContent,
+              document.getElementById("resposta-d").textContent,
+            ],
+            datasets: [
+              {
+                label: "",
+                data: clicks,
+                backgroundColor: [
+                  "rgba(255, 99, 132, 0.5)",
+                  "rgba(54, 162, 235, 0.5)",
+                  "rgba(255, 206, 86, 0.5)",
+                  "rgba(75, 192, 192, 0.5)",
+                ],
+                borderColor: [
+                  "rgba(255, 99, 132, 1)",
+                  "rgba(54, 162, 235, 1)",
+                  "rgba(255, 206, 86, 1)",
+                  "rgba(75, 192, 192, 1)",
+                ],
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+      }
+    </script>
+  </body>
+</html>
