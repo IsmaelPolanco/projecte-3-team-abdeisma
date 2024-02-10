@@ -83,6 +83,12 @@
       #gameForm button:active {
         transform: scale(0.95); /* Reducción de escala al hacer clic */
       }
+
+      #gameForm button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
       #boton-atras {
         margin-bottom: 40%;
       }
@@ -103,48 +109,60 @@
     </style>
   </head>
   <body>
-    <div id="boton-atras">
-      <button id="go-back">Volver</button>
-    </div>
     <div id="gameForm">
-      <h2>Crear Nueva Partida</h2>
-      <form id="createGameForm">
-        <label for="title">Título de la partida:</label>
-        <input type="text" id="title" name="title" required />
-
-        <label for="quantity">Cantidad de preguntas:</label>
-        <select id="quantity" name="quantity">
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-        </select>
-
-        <label for="time">Temporizador para las preguntas:</label>
-        <select id="time" name="time">
-          <option value="5">5 segundos</option>
-          <option value="10" selected>10 segundos</option>
-          <option value="15">15 segundos</option>
-          <option value="20">20 segundos</option>
-        </select>
-
-        <label>Temas:</label>
-        <label><input type="checkbox" name="topic" value="paises" /><span></span>Paises</label>
-        <label><input type="checkbox" name="topic" value="quimica" /><span></span>Química</label>
-        <label><input type="checkbox" name="topic" value="astronomia"/><span></span> Astronomia</label><br>
-
-        <div style="text-align: center">
-          <button type="submit">Crear Partida</button>
-        </div>
-      </form>
-    </div>
+      <h2>Nueva Partida</h2>
+      <form id="adminForm">
+          <label for="title">Título:</label>
+          <input type="text" id="title" name="title" required>
+  <br><br>
+          <label for="quantity">Preguntas:</label>
+          <input type="range" id="quantity" name="quantity" min="5" max="20" value="10">
+          <span id="selectedQuantity">10</span> 
+          <br>
+  
+          <br><label for="time">Tiempo para cada pregunta:</label>
+  <input type="range" id="time" name="time" min="5" max="20" value="10">
+  <span id="selectedTime">10</span> 
+  <br><br>
+          <label>Temas:</label>
+          <label><input type="checkbox" name="topic" value="paises"> <span></span> Paises</label>
+          <label><input type="checkbox" name="topic" value="quimica"><span></span>  Química</label>
+          <label><input type="checkbox" name="topic" value="astronomia"><span></span> Astronomia</label>
+  
+          <button type="submit" id="submitButton">Crear Partida</button>      </form>
+          </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.min.js"></script>
     <script src="main.js"></script>
     <script>
-      // JavaScript para manejar el clic en el botón
-      document.getElementById("go-back").addEventListener("click", function () {
-        // Ir a la página anterior
-        window.history.back();
+      var timeInput = document.getElementById('time');
+      var selectedTimeSpan = document.getElementById('selectedTime');
+  
+      var quantityInput = document.getElementById('quantity');
+      var selectedQuantitySpan = document.getElementById('selectedQuantity');
+  
+      var submitButton = document.getElementById('submitButton');
+  
+      timeInput.addEventListener('input', function() {
+          selectedTimeSpan.textContent = timeInput.value;
+      });
+  
+      quantityInput.addEventListener('input', function() {
+          selectedQuantitySpan.textContent = quantityInput.value;
+      });
+  
+      // Deshabilitar el botón de envío al cargar la página
+      submitButton.disabled = true;
+  
+      // Verificar si al menos un checkbox está marcado
+      var checkboxes = document.querySelectorAll('input[type="checkbox"][name="topic"]');
+      checkboxes.forEach(function(checkbox) {
+          checkbox.addEventListener('change', function() {
+              var atLeastOneChecked = Array.from(checkboxes).some(function(checkbox) {
+                  return checkbox.checked;
+              });
+              submitButton.disabled = !atLeastOneChecked;
+          });
       });
     </script>
   </body>

@@ -4,10 +4,11 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Lobby de Partida</title>
+   <!-- Agrega el enlace a Bootstrap CDN -->
+   <link rel="icon" type="image/x-icon" href="favicon.ico">
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap">
    <style>
-       body {
+  body {
            margin: 0;
            padding: 0;
            background-color: #f4f4f4;
@@ -126,40 +127,58 @@
            font-weight: bold;
        }
    </style>
+  
 </head>
 <body>
+
    <div id="lobby-container">
-       <h1 id="titleLobby">Lobby de Partida</h1>
+       <h1 id="titleLobby"></h1>
        <div id="url-container" class="input-group">
-           <label for="url" class="input-group-prepend">URL de la Partida:</label>
-           <input type="text" id="url" value="" readonly class="form-control" style="margin-left: 4px; margin-right: 4px";>
+           <label for="url" class="input-group-prepend">Codi de la Partida: </label>
+           <input type="text" id="url" value="" readonly class="form-control">
            <div class="input-group-append">
-               <button id="copy-button" class="btn btn-lg btn-success">Copiar</button>
+               <button id="copy-button" class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                       height="16" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
+                       <path fill-rule="evenodd"
+                           d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z" />
+                   </svg></button>
            </div>
        </div>
-       <button id="start-button" class="btn btn-lg btn-primary">Comenzar la partida</button>
+       <p class="advice">No recargues la página mientras juegas animal</p>
+       <button id="start-button" >Comenzar a jugar</button>
    </div>
    <div id="llistaUsuaris">
        <h2>Llista d'usuaris</h2>
        <ul id="user-list">
+
        </ul>
    </div>
-   
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-   document.getElementById("copy-button").addEventListener("click", function() {
+
+
+   <!-- Agrega el script de Bootstrap y Popper.js (necesario para algunos componentes de Bootstrap) -->
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+   <script>
+       // Lògica pels botons
+       document.getElementById("copy-button").addEventListener("click", function() {
+           //copiar URL al portfoli
+           const urlInput = document.getElementById("url");
+           urlInput.select();
+           document.execCommand("copy");
+       });
+
+
+       // Assigna la URL de la partida al input
+       const params = new URLSearchParams(window.location.search);
+       const partidaId = params.get("codiPartida");
        const urlInput = document.getElementById("url");
-       urlInput.select();
-       document.execCommand("copy");
-   });
-   const params = new URLSearchParams(window.location.search);
-   const partidaId = params.get("partida");
-   const urlInput = document.getElementById("url");
-   urlInput.value = window.location.href;
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.min.js"></script>
-<script src="main.js"></script>
+       urlInput.value = partidaId;
+   </script>
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.min.js"></script>
+           <script src="main.js"></script>
+</body>
 </html>
